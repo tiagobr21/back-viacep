@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Http\Config;
+use App\Models\Usuarios;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
+use PhpParser\Node\Expr\FuncCall;
+use Psy\CodeCleaner\ReturnTypePass;
 
 class indexController extends Controller
 {
@@ -23,5 +23,37 @@ class indexController extends Controller
 
        echo $response;
        
+   }
+
+   public function getusers(){
+      $users = Usuarios::all();
+
+      echo $users;
+   }
+
+   public function createusers(Request $data){
+     
+       $users = new Usuarios;
+
+       $users->nome = $data->nome;
+       $users->idade = $data->idade;
+       $users->cep = $data->cep;
+       $users->logradouro = $data->logradouro;
+       $users->complemento = $data->complemento;
+       $users->bairro = $data->bairro;
+       $users->localidade = $data->localidade;
+       $users->uf = $data->uf;
+       $users->created_at = date('Y-m-d H:i');
+       $users->updated_at = date('Y-m-d H:i');  
+
+       $nome = $users->nome;
+
+       $users->save();
+
+       return response()->json([
+        "message"=>"Usuário $nome criado com sucesso"
+       ],200);
+
+     
    }
 }

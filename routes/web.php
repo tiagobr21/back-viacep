@@ -20,4 +20,8 @@ Route::get('/', function () {
 
 Route::get('/viacep',[App\Http\Controllers\indexController::class,'viacep']);
 
+Route::get('/getusers',[App\Http\Controllers\indexController::class,'getusers']);
+
+Route::get('/createusers',[App\Http\Controllers\indexController::class,'createusers']);
+
 

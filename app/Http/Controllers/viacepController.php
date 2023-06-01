@@ -23,7 +23,6 @@ class viacepController extends Controller
        $cr = curl_init();
        curl_setopt($cr,CURLOPT_URL,$url);
        curl_setopt($cr,CURLOPT_RETURNTRANSFER,true);
-       curl_setopt($cr, CURLOPT_HTTPHEADER, array('Accept: application/json', 'Content-Type: application/json'));
        $response = curl_exec($cr);
        curl_close($cr);
       

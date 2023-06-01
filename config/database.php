@@ -43,7 +43,7 @@ return [
             'database' => env('DB_DATABASE', 'laravel_db'),
             'username' => env('DB_USERNAME', 'laravel_db'),
             'password' => env('DB_PASSWORD', '123456789'),
-            'unix_socket' => env('DB_SOCKET', ''),
+            'unix_socket' => '',
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
             'prefix' => '',

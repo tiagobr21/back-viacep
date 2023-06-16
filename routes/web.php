@@ -15,28 +15,30 @@ use PhpParser\Node\Expr\FuncCall;
 */
 
 Route::get('/', function () {
-    return('<h1>Welcome</h1>');
+    return response()->json('Work');
 });
+
 
 Route::prefix('viacep')->group(function(){
 
-    Route::get('/obtercep',[App\Http\Controllers\viacepController::class,'obtercep']);
+    Route::post('/getaddressbycep',[App\Http\Controllers\viacepController::class,'getaddressbycep']);
 
-    Route::get('/buscacep',[App\Http\Controllers\viacepController::class,'buscacep']);
+    Route::post('/searchcep',[App\Http\Controllers\viacepController::class,'searchcep']);
     
 });
 
+
 Route::prefix('user')->group(function(){
+
+    Route::post('/create',[App\Http\Controllers\usersController::class,'createUsers']);
 
     Route::get('/listall',[App\Http\Controllers\usersController::class,'getAllUsers']);
         
     Route::get('/{id}',[App\Http\Controllers\usersController::class,'getSingleUser']);
 
-    Route::get('/create',[App\Http\Controllers\usersController::class,'createUsers']);
+    Route::delete('/delete/{id}',[App\Http\Controllers\usersController::class,'deleteUsers']);
 
-    Route::get('/delete/{id}',[App\Http\Controllers\usersController::class,'deleteUsers']);
-
-    Route::get('/update/{id}',[App\Http\Controllers\usersController::class,'updateUsers']);
-
+    Route::put('/update/{id}',[App\Http\Controllers\usersController::class,'updateUsers']);
 
 });
+    

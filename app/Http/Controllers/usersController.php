@@ -24,7 +24,8 @@ class usersController extends Controller
      }
   
      public function createUsers(Request $data){
-       
+    
+
          $users = new Usuarios;
   
          $users->nome = $data->nome;
@@ -39,12 +40,25 @@ class usersController extends Controller
          $users->updated_at = date('Y-m-d H:i');  
   
          $nome = $users->nome;
+         $idade = $users->idade;
+
+         if ($idade < 18){
+          
+          return response()->json([
+            "message"=>"Usuário menor de 18 anos"
+           ],400);
+
+         }else{
+
+          $users->save();
   
-         $users->save();
+          return response()->json([
+           "message"=>"Usuário $nome criado com sucesso"
+          ],200);
+
+         }
   
-         return response()->json([
-          "message"=>"Usuário $nome criado com sucesso"
-         ],200);
+       
        
      }
   

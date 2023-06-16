@@ -6,16 +6,11 @@ use Illuminate\Http\Request;
 
 class viacepController extends Controller
 {
-   public function obtercep(Request $data){
+   public function getaddressbycep(Request $data){
+       
 
         $api = 'viacep.com.br/ws/';
 
-        if($data->idade < 18){
-            return response()->json([
-            "message"=>"Idade menor que 18 anos"
-            ],400);
-        }
-      
        $response = $data->cep;
 
        $url = $api . $response . '/json';
@@ -42,7 +37,7 @@ class viacepController extends Controller
        
    }
 
-   public function buscacep(Request $data){
+   public function searchcep(Request $data){
         $api = 'viacep.com.br/ws/';
 
         $uf =  $data->uf;

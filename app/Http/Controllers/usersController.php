@@ -41,6 +41,7 @@ class usersController extends Controller
   
          $nome = $users->nome;
          $idade = $users->idade;
+         $uf = $users->uf;
 
          if ($idade < 18){
           
@@ -48,6 +49,12 @@ class usersController extends Controller
             "message"=>"Usuário menor de 18 anos"
            ],400);
 
+         }else if($uf != "AM"){
+
+          return response()->json([
+            "message"=>"UF não autorizado !!!"
+           ],400);
+           
          }else{
 
           $users->save();
@@ -65,13 +72,9 @@ class usersController extends Controller
      public function deleteUsers($id){
   
           Usuarios::findOrFail($id)->delete();
-          
-          $data = Usuarios::findOrFail($id);
-  
-          $nome = $data->nome; 
   
           return response()->json([
-              "message"=>"Usuário $nome deletado com sucesso"
+              "message"=>"Usuário deletado com sucesso"
           ],200);  
           
       }
